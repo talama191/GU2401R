@@ -1,8 +1,6 @@
 
 public static class MangVaHam
 {
-
-
     public static int DemSoLanSoChanXuatHienTrongChuoi(int[] arr)
     {
         int dem = 0;
@@ -16,7 +14,7 @@ public static class MangVaHam
         return dem;
     }
 
-    public static void TinhTong(int[] arr1, int[] arr2)
+    public static int TinhTong(int[] arr1)
     {
         int sum = 0;
         foreach (int i in arr1)
@@ -24,6 +22,7 @@ public static class MangVaHam
             sum += i;
         }
         Console.WriteLine(sum);
+        return sum;
     }
 
     public static void BaiTap2002()
