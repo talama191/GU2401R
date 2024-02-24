@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj": {}
+    "e:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj": {}
   },
   "projects": {
-    "E:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj": {
+    "e:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj",
+        "projectUniqueName": "e:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj",
         "projectName": "C# basic",
-        "projectPath": "E:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj",
+        "projectPath": "e:\\Teaching\\Lop 2\\C# basic\\C# basic.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Teaching\\Lop 2\\C# basic\\obj\\",
+        "outputPath": "e:\\Teaching\\Lop 2\\C# basic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
