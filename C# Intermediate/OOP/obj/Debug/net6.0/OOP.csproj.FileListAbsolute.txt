@@ -1,0 +1,14 @@
+E:\Teaching\Lop 2\C# Intermediate\OOP\bin\Debug\net6.0\OOP.exe
+E:\Teaching\Lop 2\C# Intermediate\OOP\bin\Debug\net6.0\OOP.deps.json
+E:\Teaching\Lop 2\C# Intermediate\OOP\bin\Debug\net6.0\OOP.runtimeconfig.json
+E:\Teaching\Lop 2\C# Intermediate\OOP\bin\Debug\net6.0\OOP.dll
+E:\Teaching\Lop 2\C# Intermediate\OOP\bin\Debug\net6.0\OOP.pdb
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\OOP.GeneratedMSBuildEditorConfig.editorconfig
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\OOP.AssemblyInfoInputs.cache
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\OOP.AssemblyInfo.cs
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\OOP.csproj.CoreCompileInputs.cache
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\OOP.dll
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\refint\OOP.dll
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\OOP.pdb
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\OOP.genruntimeconfig.cache
+E:\Teaching\Lop 2\C# Intermediate\OOP\obj\Debug\net6.0\ref\OOP.dll

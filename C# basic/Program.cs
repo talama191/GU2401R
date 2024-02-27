@@ -7,6 +7,5 @@ public class Program
         Console.WriteLine("Ten nguoi dung la: " + acc1.accountName + " Tuoi: " + acc1.age);
         Console.WriteLine($"Ten nguoi dung la: {acc1.accountName} Tuoi: {acc1.age}");
         Console.ReadKey();
-
     }
 }
