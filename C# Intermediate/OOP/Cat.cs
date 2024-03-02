@@ -10,11 +10,7 @@
 
     public override void MakeSound()
     {
-        Console.WriteLine("Meo meo");
-    }
-
-    public override void Move()
-    {
-        Console.WriteLine("");
+        base.MakeSound();
+        Console.WriteLine("Meow meow");
     }
 }

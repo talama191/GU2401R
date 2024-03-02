@@ -4,17 +4,18 @@ public class Program
 {
     static void Main(string[] args)
     {
-        Cat cat1 = new Cat(3, 0.1f, true);
-        Dog dog1 = new Dog(10, 0.2f, false);
+        Dog dog1 = new Dog(10, 0.2, true);
+        Dog dog2 = new Dog(10, 0.2, true);
 
-        Console.WriteLine($"Can nang meo la: {cat1.Weight}, Can nang cho la: {dog1.Weight}");
-        cat1.MakeSound();
-        dog1.MakeSound();
+        Console.WriteLine(dog1.GetHashCode());
+        Console.WriteLine(dog1.Equals(dog2));
+        if (dog1.Equals(dog2))
+        {
+            Console.WriteLine("2 chu cho co can nang bang nhau");
+        }
 
-        Car car = new Car();
-        Console.WriteLine($"So banh xe la {car.WheelCount}");
         Console.ReadKey();
 
-
+      //MathUtils.Sum
     }
 }

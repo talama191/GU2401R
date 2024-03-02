@@ -17,4 +17,18 @@ public class Dog : Animal
     {
         Console.WriteLine("BBBB");
     }
+
+    public override string? ToString()
+    {
+        return $"Chu cho nay co can nang {weight}kg, chieu cao {height}m";
+    }
+
+    public override bool Equals(object? obj)
+    {
+        Dog dog2 = obj as Dog;
+        if (dog2 == null) return false;
+        return this.weight == dog2.weight;
+    }
+
+
 }

@@ -1,5 +1,5 @@
 ﻿
-public abstract class Animal
+public class Animal
 {
     protected double weight;
     protected double height;
@@ -11,9 +11,15 @@ public abstract class Animal
     {
         this.weight = weight;
         this.height = height;
-        Console.WriteLine("Khoi tao animal");
     }
 
-    public abstract void MakeSound();
-    public abstract void Move();
+    public virtual void MakeSound()
+    {
+        Console.WriteLine("test");
+    }
+
+    public virtual void Move()
+    {
+        Console.WriteLine("test");
+    }
 }
