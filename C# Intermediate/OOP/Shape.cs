@@ -1,48 +1,69 @@
 ﻿
-public abstract class Shape
+namespace Part1
 {
-    public abstract double GetArea();
-    public abstract double GetPerimeter();
-}
-
-public class Circle : Shape
-{
-    public double radius;
-
-    protected Circle(double radius)
+    public interface IShape : IComparable<IShape>
     {
-        this.radius = radius;
+        public double GetArea();
+        public double GetPerimeter();
     }
 
-    public override double GetArea()
+    public class Circle : IShape
     {
-        return radius * 2 * Math.PI;
+        private double radius;
+        public double Area => GetArea();
+
+        public Circle(double radius)
+        {
+            this.radius = radius;
+        }
+
+
+        public double GetArea()
+        {
+            return radius * radius * Math.PI;
+        }
+
+        public double GetPerimeter()
+        {
+            return radius * 2 * Math.PI;
+        }
+
+        public int CompareTo(IShape? other)
+        {
+            double area = GetArea();
+            if (area > other.GetArea()) return 1;
+            if (area < other.GetArea()) return -1;
+            return 0;
+        }
     }
 
-    public override double GetPerimeter()
+    public class Rectangle : IShape
     {
-        return radius * radius * Math.PI;
-    }
-}
+        private double width;
+        private double height;
 
-public class Rectangle : Shape
-{
-    public double width;
-    public double height;
+        public Rectangle(double width, double height)
+        {
+            this.width = width;
+            this.height = height;
+        }
 
-    public Rectangle(double width, double height)
-    {
-        this.width = width;
-        this.height = height;
-    }
+        public int CompareTo(IShape? other)
+        {
+            double area = GetArea();
+            if (area > other.GetArea()) return 1;
+            if (area < other.GetArea()) return -1;
+            return 0;
+        }
 
-    public override double GetArea()
-    {
-        return width * height;
-    }
+        public double GetArea()
+        {
+            return width * height;
+        }
 
-    public override double GetPerimeter()
-    {
-        return (width + height) * 2;
+        public double GetPerimeter()
+        {
+            return (width + height) * 2;
+        }
     }
 }
