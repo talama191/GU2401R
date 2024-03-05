@@ -1,29 +1,57 @@
 ﻿
 
 using Part1;
-
 public class Program
 {
     static void Main(string[] args)
     {
-        IShape[] shapes = new IShape[]
+        try
         {
+            List<char> characters = new List<char>();
+            characters.InsertRange(0, new Char[] { 'a', 'b', 'c', 'd', 'e', 'f' });
+            int value = characters[6];
+        }
+        catch (IndexOutOfRangeException ex)
+        {
+            System.Console.WriteLine(ex);
+        }
+    }
+
+    public static int ExceptionExample(int[] arr, int index)
+    {
+        try
+        {
+            return arr[index];
+        }
+        catch (IndexOutOfRangeException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return 0;
+        }
+        catch (FileNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return 0;
+        }
+    }
+
+
+
+    public static void OldEx1()
+    {
+        IShape[] shapes = new IShape[]
+       {
             new Circle(3),
             new Rectangle(3,4),
             new Rectangle(4,5),
             new Circle(5)
-        };
+       };
         Array.Sort(shapes);
         for (int i = 0; i < shapes.Length; i++)
         {
             Console.WriteLine($"Dien tich la {shapes[i].GetArea()}, chu vi la {shapes[i].GetPerimeter()}");
         }
         Console.ReadKey();
-    }
-
-    public static void GetBound(IShape shape)
-    {
-
     }
 
     public static void BaiTapTuan06()

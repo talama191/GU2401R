@@ -14,6 +14,7 @@ namespace Part1
 
         public Circle(double radius)
         {
+            if (radius < 0) throw new Exception("Gia tri ban kinh khong duoc phep nho hon 0");
             this.radius = radius;
         }
 
