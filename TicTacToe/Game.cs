@@ -27,7 +27,7 @@
                 if (board.IsGameOver()) return;
                 currentPlayer.ProcessMove(board);
                 currentPlayer = currentPlayer == player1 ? player2 : player1;
-
+                //todo
             }
         }
     }
