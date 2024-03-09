@@ -33,6 +33,13 @@
         this.age = age;
     }
 
+    public Student(int id, string studentName, int age)
+    {
+        this.id = id;
+        this.studentName = studentName;
+        this.age = age;
+    }
+
     public void Print()
     {
         Console.WriteLine($"Ten: {this.studentName}, Tuoi: {this.age}");
