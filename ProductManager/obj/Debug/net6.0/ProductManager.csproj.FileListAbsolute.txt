@@ -1,0 +1,14 @@
+E:\Teaching\Lop 2\ProductManager\bin\Debug\net6.0\ProductManager.exe
+E:\Teaching\Lop 2\ProductManager\bin\Debug\net6.0\ProductManager.deps.json
+E:\Teaching\Lop 2\ProductManager\bin\Debug\net6.0\ProductManager.runtimeconfig.json
+E:\Teaching\Lop 2\ProductManager\bin\Debug\net6.0\ProductManager.dll
+E:\Teaching\Lop 2\ProductManager\bin\Debug\net6.0\ProductManager.pdb
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ProductManager.GeneratedMSBuildEditorConfig.editorconfig
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ProductManager.AssemblyInfoInputs.cache
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ProductManager.AssemblyInfo.cs
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ProductManager.csproj.CoreCompileInputs.cache
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ProductManager.dll
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\refint\ProductManager.dll
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ProductManager.pdb
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ProductManager.genruntimeconfig.cache
+E:\Teaching\Lop 2\ProductManager\obj\Debug\net6.0\ref\ProductManager.dll
