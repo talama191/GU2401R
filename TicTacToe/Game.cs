@@ -20,14 +20,25 @@
 
         public void Start()
         {
-            bool isGameOver = false;
-
-            while (isGameOver)
+            Mark winnerMark = Mark.Empty;
+            while (true)
             {
-                if (board.IsGameOver()) return;
+                if (board.CheckGameOver())
+                {
+                    winnerMark = board.WinnerMark;
+                    return;
+                }
                 currentPlayer.ProcessMove(board);
                 currentPlayer = currentPlayer == player1 ? player2 : player1;
-                //todo
+
+                //if (currentPlayer == player1)
+                //{
+                //    currentPlayer = player2;
+                //}
+                //else
+                //{
+                //    currentPlayer = player1;
+                //}
             }
         }
     }
