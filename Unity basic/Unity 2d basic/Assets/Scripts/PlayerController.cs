@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.UpdateHpUI();
+        GameManager.Instance.UIController.UpdateHpUI();
     }
 
     private void Update()
@@ -55,6 +55,6 @@ public class PlayerController : MonoBehaviour
     public void HealPlayer(float amount)
     {
         CurrentHp += amount;
-        GameManager.Instance.UpdateHpUI();
+        GameManager.Instance.UIController.UpdateHpUI();
     }
 }
