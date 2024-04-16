@@ -67,4 +67,10 @@ public class PlayerController : MonoBehaviour
         CurrentHp += amount;
         GameManager.Instance.UIController.UpdateHpUI();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Physics.cast
+        //DontDestroyOnLoad(gameObject);
+    }
 }
