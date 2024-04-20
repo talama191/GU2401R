@@ -96,13 +96,4 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("vertical_velocity", rb.velocity.y);
         animator.SetBool("is_grounded", isGrounded);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "enemy")
-        {
-            rb.AddForce(Vector2.up * knockbackForce, ForceMode2D.Impulse);
-            collision.gameObject.GetComponent<DamageReceiver>()?.TakeDamage(damage);
-        }
-    }
 }

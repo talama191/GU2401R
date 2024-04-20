@@ -9,7 +9,6 @@ public class BasicEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            //Vector3 playerDirection
             Vector3 forceDirection = (collision.transform.position - transform.position).normalized;
             float angle = Vector3.Angle(Vector2.right, forceDirection);
             if (angle > 45 && angle < 135)
@@ -19,7 +18,7 @@ public class BasicEnemy : MonoBehaviour
             else
             {
                 PlayerController.Instance.Rigidbody.AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
-                PlayerController.Instance.DamageReceiver.TakeDamage(1);
+                PlayerController.Instance.DamageReceiver.TakeHit(1);
             }
         }
     }
