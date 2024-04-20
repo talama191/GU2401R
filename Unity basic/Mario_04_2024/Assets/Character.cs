@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
         currentHp -= damage;
         if (currentHp <= 0)
         {
+            VisualFXManager.Instance.SpawnDisappearEffect(transform.position);
             Destroy(gameObject);
         }
     }
