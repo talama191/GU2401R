@@ -47,9 +47,20 @@ public class PlayerController : MonoBehaviour
 
     private void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(groundCheck.position, 0.1f, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.CircleCast(groundCheck.position, 0.05f, Vector2.zero, 0.05f, LayerMask.GetMask("Ground"));
+
         isGrounded = hit.collider != null;
-        if (hit.collider == null) return;
+        if (hit.collider == null)
+        {
+            //moi them vao
+            if (currentPlatform != null)
+            {
+                currentPlatform.DeattachRigidbody(rb);
+                currentPlatform = null;
+            }
+            return;
+        }
+        Debug.Log(hit.collider);
         if (hit.transform.tag == "moving_platform")
         {
             currentPlatform = hit.transform.gameObject.GetComponent<MovingPlatform>();

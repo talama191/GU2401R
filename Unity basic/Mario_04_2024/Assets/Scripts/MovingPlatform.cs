@@ -22,6 +22,7 @@ public class MovingPlatform : MonoBehaviour
     {
         MoveBetweenPoints();
         MoveAttachedObjects();
+        //Debug.Log("attached counts " + attachedRbs.Count);
     }
 
     private void MoveAttachedObjects()
