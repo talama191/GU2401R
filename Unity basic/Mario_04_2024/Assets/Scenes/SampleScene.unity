@@ -1263,11 +1263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080057008799592583, guid: 9796f43736e819846a6827e1e0e3956b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.98
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 3080057008799592583, guid: 9796f43736e819846a6827e1e0e3956b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37
+      value: -1.26
       objectReference: {fileID: 0}
     - target: {fileID: 3080057008799592583, guid: 9796f43736e819846a6827e1e0e3956b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1803,6 +1803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf244bdebfff894f8314dcb86be9b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 0.1
   consumeOnCollision: 0
   damage: 1
   knockbackOwner: 1
@@ -1987,7 +1988,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2008,7 +2009,7 @@ Transform:
   m_GameObject: {fileID: 1201886800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.54, y: 0.73, z: 0}
+  m_LocalPosition: {x: 2.89, y: -1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4733,9 +4734,9 @@ GameObject:
   - component: {fileID: 2066699570}
   - component: {fileID: 2066699572}
   - component: {fileID: 2066699571}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DamageReceiver
-  m_TagString: Untagged
+  m_TagString: weak_point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4767,7 +4768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f8214042c83034eadaf4ca30d1549f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
+  owner: {fileID: 1201886807}
+  knockbackOnHit: 1
+  knockbackForce: 4
 --- !u!61 &2066699572
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,11 +13,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DamageReceiver damageReceiver;
     [SerializeField] private float knockbackForce;
 
-    private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private bool isGrounded;
     private MovingPlatform currentPlatform;
+    private Rigidbody2D rb;
+    private bool isGrounded;
     private Animator animator;
+    private Character character;
 
     public DamageReceiver DamageReceiver => damageReceiver;
     public Rigidbody2D Rigidbody => rb;
@@ -35,13 +36,17 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        character = GetComponent<Character>();
     }
 
     private void Update()
     {
         GroundCheck();
-        MovePlayer();
-        JumpControl();
+        if (character.CanMove)
+        {
+            MovePlayer();
+            JumpControl();
+        }
         AnimationControl();
     }
 
@@ -52,7 +57,6 @@ public class PlayerController : MonoBehaviour
         isGrounded = hit.collider != null;
         if (hit.collider == null)
         {
-            //moi them vao
             if (currentPlatform != null)
             {
                 currentPlatform.DeattachRigidbody(rb);
@@ -60,19 +64,10 @@ public class PlayerController : MonoBehaviour
             }
             return;
         }
-        Debug.Log(hit.collider);
         if (hit.transform.tag == "moving_platform")
         {
             currentPlatform = hit.transform.gameObject.GetComponent<MovingPlatform>();
             currentPlatform.AttachRigidbody(rb);
-        }
-        else
-        {
-            if (currentPlatform != null)
-            {
-                currentPlatform.DeattachRigidbody(rb);
-                currentPlatform = null;
-            }
         }
     }
 

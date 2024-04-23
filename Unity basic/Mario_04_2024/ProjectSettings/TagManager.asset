@@ -16,10 +16,10 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - DamageDealer
-  - DamageReceiver
-  - 
-  - 
+  - DamageDealer_Player
+  - DamageReceiver_Player
+  - DamageDealer_Enemy
+  - DamageReceiver_Enemy
   - 
   - 
   - 
