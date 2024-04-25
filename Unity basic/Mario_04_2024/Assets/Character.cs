@@ -8,7 +8,6 @@ public class Character : MonoBehaviour
     private bool canMove;
     private float currentHp;
     private Animator animator;
-
     public bool CanMove => canMove;
 
     private void Awake()
