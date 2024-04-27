@@ -6,12 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    [SerializeField] private float damage;
-    [SerializeField] private float movevementSpeed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private DamageDealer bulletPrefab;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private DamageReceiver damageReceiver;
+    [Header("Player stat")]
+    [SerializeField] private float movevementSpeed;
+    [SerializeField] private float jumpForce;
     [SerializeField] private float knockbackForce;
+    [Header("Attack")]
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float damage;
+    [SerializeField] private float attackCooldown;
 
     private SpriteRenderer spriteRenderer;
     private MovingPlatform currentPlatform;
@@ -19,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Animator animator;
     private Character character;
+    private float attackTimer = 0;
+    private bool isFacingLeft;
 
     public DamageReceiver DamageReceiver => damageReceiver;
     public Rigidbody2D Rigidbody => rb;
@@ -44,8 +51,9 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         if (character.CanMove)
         {
-            MovePlayer();
+            MovementControl();
             JumpControl();
+            FireControl();
         }
         AnimationControl();
     }
@@ -71,7 +79,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void MovePlayer()
+    private void MovementControl()
     {
         float inputValue = Input.GetAxisRaw("Horizontal");
         float movementValue = inputValue * movevementSpeed;
@@ -79,11 +87,11 @@ public class PlayerController : MonoBehaviour
 
         if (inputValue < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = isFacingLeft = true;
         }
         else if (inputValue > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = isFacingLeft = false;
         }
     }
 
@@ -92,6 +100,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void FireControl()
+    {
+        attackTimer -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.F) && attackTimer <= 0)
+        {
+            attackTimer = attackCooldown;
+            DamageDealer bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 bulletVector = (mousePos - transform.position).normalized;
+
+            //ban thang theo huong nguoi choi chay
+            //Vector3 bulletVector = isFacingLeft ? Vector3.left : Vector3.right;
+            bulletRb.AddForce(bulletVector * bulletSpeed, ForceMode2D.Impulse);
         }
     }
 

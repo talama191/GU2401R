@@ -18,10 +18,19 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        DealDamage(collision);
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        DealDamage(collision);
+    }
+
+    private void DealDamage(Collider2D collision)
+    {
+        Debug.Log("collide");
         if (timer < 0)
         {
-
             if (collision.gameObject.tag == "weak_point")
             {
                 if (knockbackOwner)
@@ -30,8 +39,8 @@ public class DamageDealer : MonoBehaviour
                 }
                 DamageReceiver damageReceiver = collision.gameObject.GetComponent<DamageReceiver>();
                 damageReceiver.TakeHit(damage, this);
+                timer = cooldown;
             }
-            timer = cooldown;
             if (consumeOnCollision)
             {
                 Destroy(gameObject);

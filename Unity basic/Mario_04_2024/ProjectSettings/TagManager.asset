@@ -21,7 +21,7 @@ TagManager:
   - DamageDealer_Enemy
   - DamageReceiver_Enemy
   - Player
-  - 
+  - DamageDealer_Player_Bullet
   - 
   - 
   - 

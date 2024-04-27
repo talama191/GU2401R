@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
-
 public class Character : MonoBehaviour
 {
     [SerializeField] private float maxHp;
+    [SerializeField] private bool isPlayer;
 
     private bool canMove;
     private float currentHp;
@@ -19,6 +19,10 @@ public class Character : MonoBehaviour
     {
         currentHp = maxHp;
         canMove = true;
+        if (isPlayer)
+        {
+            PlayerInfoUIManager.Instance.UpdateHP(currentHp, maxHp);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -27,9 +31,17 @@ public class Character : MonoBehaviour
         if (currentHp <= 0)
         {
             VisualFXManager.Instance.SpawnDisappearEffect(transform.position);
-            Destroy(gameObject);
+            if (isPlayer)
+            {
+                //khi người chơi chết
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         if (animator != null) animator.SetBool("is_taking_damage", true);
+        if (isPlayer) PlayerInfoUIManager.Instance.UpdateHP(currentHp, maxHp);
     }
 
     public void DisableCharacterMovement(float duration)
