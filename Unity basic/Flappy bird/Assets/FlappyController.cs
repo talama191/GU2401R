@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class FlappyController : MonoBehaviour
 {
-    private const float GroundSpacing = 6.7f;
-
     [SerializeField] private Camera pCamera;
     [SerializeField] private Transform flappy;
-    [SerializeField] private List<Transform> grounds;
     [Header("Config")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpForce;
@@ -16,46 +12,33 @@ public class FlappyController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isPause;
-
-    private float shiftDistance = 0;
-    private Queue<Transform> groundQueue = new Queue<Transform>();
-    private float nextGroundPosition = 0;
+    private State state;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         isPause = false;
-        for (int i = 0; i < grounds.Count; i++)
-        {
-            Transform t = grounds[i];
-            groundQueue.Enqueue(t);
-        }
-        nextGroundPosition = grounds[grounds.Count - 1].position.x + GroundSpacing;
+        state = State.Playing;
     }
 
     void Update()
     {
-        if (!isPause)
+        switch (state)
         {
-            Move();
-            RotateFlappy();
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Flap();
-            }
-            ShiftGround();
-        }
-    }
+            case State.Standby:
+                break;
+            case State.Playing:
+                Move();
+                RotateFlappy(-45);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Flap();
+                }
+                break;
+            case State.Gameover:
+                RotateFlappy(-90, 5);
+                break;
 
-    private void ShiftGround()
-    {
-        if (shiftDistance > GroundSpacing)
-        {
-            shiftDistance = shiftDistance - GroundSpacing;
-            Transform ground = groundQueue.Dequeue();
-            ground.position = new Vector3(nextGroundPosition, ground.position.y);
-            nextGroundPosition += GroundSpacing;
-            groundQueue.Enqueue(ground);
         }
     }
 
@@ -65,15 +48,16 @@ public class FlappyController : MonoBehaviour
         transform.Translate(moveVector);
         pCamera.transform.Translate(moveVector);
         //cong vao khoang cach nguoi choi di chuyen vao bo dem
-        shiftDistance += Time.deltaTime * movementSpeed;
+        LevelGenerator.Instance.ShiftDistance += Time.deltaTime * movementSpeed;
+        LevelGenerator.Instance.ObstacleSpawnTimer += Time.deltaTime * movementSpeed;
     }
 
-    private void RotateFlappy()
+    private void RotateFlappy(float zDegree, float factor = 1)
     {
-        //Xoay chú chim tới góc -45 độ sử dụng hàm lerp
+        //Xoay chú chim tới góc zDegree độ sử dụng hàm lerp
         flappy.rotation = Quaternion.Lerp(Quaternion.Euler(flappy.rotation.eulerAngles),
-            Quaternion.Euler(new Vector3(0, 0, -45)),
-            Time.deltaTime * rotationSpeed);
+            Quaternion.Euler(new Vector3(0, 0, zDegree)),
+            Time.deltaTime * rotationSpeed * factor);
     }
 
     private void Flap()
@@ -82,5 +66,24 @@ public class FlappyController : MonoBehaviour
         flappy.rotation = Quaternion.Euler(new Vector3(0, 0, 45));
         rb.velocity = new Vector3(rb.velocity.x, 0);
         rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+
+        AudioManager.Instance.PlayJumpClip();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            state = State.Gameover;
+            gameObject.layer = LayerMask.NameToLayer("Dead");
+            AudioManager.Instance.PlayDeadClip();
+        }
+    }
+
+    public enum State
+    {
+        Standby,
+        Playing,
+        Gameover
     }
 }
