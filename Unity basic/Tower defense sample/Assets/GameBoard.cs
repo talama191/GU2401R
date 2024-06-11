@@ -2,7 +2,6 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-
 public class GameBoard : MonoBehaviour
 {
     private List<Node> nodes;
