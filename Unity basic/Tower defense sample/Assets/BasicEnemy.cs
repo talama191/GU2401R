@@ -6,16 +6,22 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] private float movementSpeed;
 
     private Queue<Node> currentPath;
+    private Node prevNode;
     private bool hasSetup = false;
+
+    private void OnEnable()
+    {
+        GameBoard.Instance.OnGameBoardChanged += OnGameBoardChange;
+    }
+
+    private void OnDestroy()
+    {
+        GameBoard.Instance.OnGameBoardChanged -= OnGameBoardChange;
+    }
 
     public void Setup()
     {
-        List<Node> path = GameBoard.Instance.SearchFromStartToEnd();
-        currentPath = new Queue<Node>();
-        foreach (Node node in path)
-        {
-            currentPath.Enqueue(node);
-        }
+        currentPath = GameBoard.Instance.SearchFromStartToEnd();
         hasSetup = true;
     }
 
@@ -29,9 +35,9 @@ public class BasicEnemy : MonoBehaviour
         {
             Node nextNode = currentPath.Peek();
             float distance = MoveTo(nextNode);
-            if (distance <= 0.1f)
+            if (distance <= 0.01f)
             {
-                currentPath.Dequeue();
+                prevNode = currentPath.Dequeue();
             }
             if (currentPath.Count == 0)
             {
@@ -48,4 +54,23 @@ public class BasicEnemy : MonoBehaviour
         return directionVector.magnitude;
     }
 
+    public void OnGameBoardChange(Node node)
+    {
+        if (!currentPath.Contains(node)) return;
+        if (prevNode != null)
+        {
+            if (currentPath.Peek() == node)
+            {
+                currentPath = GameBoard.Instance.SearchPath(prevNode, GameBoard.Instance.EndNode);
+            }
+            else
+            {
+                currentPath = GameBoard.Instance.SearchPath(currentPath.Peek(), GameBoard.Instance.EndNode);
+            }
+        }
+        else
+        {
+            currentPath = GameBoard.Instance.SearchFromStartToEnd();
+        }
+    }
 }

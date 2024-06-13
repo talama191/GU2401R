@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class GameBoard : MonoBehaviour
 
     public Node EndNode => endNode;
     public Node StartNode => startNode;
+    public Action<Node> OnGameBoardChanged;
 
     private void Awake()
     {
@@ -27,10 +29,6 @@ public class GameBoard : MonoBehaviour
         }
 
         GenerateBoard();
-        foreach (Node node in nodes)
-        {
-            CalculateNeighbor(node);
-        }
     }
 
     private void GenerateBoard()
@@ -40,16 +38,14 @@ public class GameBoard : MonoBehaviour
         {
             nodes.Add(new Node(nodeData.X, nodeData.Z));
         }
-        endNode = GetNode(levelData.End.X, levelData.End.Z);
         startNode = GetNode(levelData.Start.X, levelData.Start.Z);
+        endNode = GetNode(levelData.End.X, levelData.End.Z);
 
+        foreach (Node node in nodes)
+        {
+            CalculateNeighbor(node);
+        }
         if (!ValidateLevel()) Debug.LogError("Level validate failed");
-    }
-
-    private bool ValidateLevel()
-    {
-        List<Node> path = SearchPath(startNode, endNode);
-        return path != null;
     }
 
     private void CalculateNeighbor(Node node)
@@ -65,12 +61,12 @@ public class GameBoard : MonoBehaviour
         if (leftNeightbor != null) node.NeighborNodes.Add(leftNeightbor);
     }
 
-    public List<Node> SearchFromStartToEnd()
+    public Queue<Node> SearchFromStartToEnd()
     {
         return SearchPath(startNode, endNode);
     }
 
-    public List<Node> SearchPath(Node start, Node end)
+    public Queue<Node> SearchPath(Node start, Node end)
     {
         Queue<Node> queue = new Queue<Node>();
         Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
@@ -84,14 +80,19 @@ public class GameBoard : MonoBehaviour
             Node current = queue.Dequeue();
             if (current == end)
             {
-                List<Node> path = new List<Node>();
+                Queue<Node> path = new Queue<Node>();
                 while (current != start)
                 {
-                    path.Add(current);
+                    path.Enqueue(current);
                     current = cameFrom[current];
                 }
-                path.Add(start);
-                path.Reverse();
+                path.Enqueue(start);
+                Node[] reversePath = path.Reverse().ToArray();
+                path.Clear();
+                foreach (Node node in reversePath)
+                {
+                    path.Enqueue(node);
+                }
                 return path;
             }
 
@@ -106,6 +107,31 @@ public class GameBoard : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public bool RemoveNode(Node node)
+    {
+        nodes.Remove(node);
+        if (!ValidateLevel())
+        {
+            nodes.Add(node);
+            return false;
+        }
+        else
+        {
+            foreach (Node neighbor in node.NeighborNodes)
+            {
+                CalculateNeighbor(neighbor);
+            }
+            OnGameBoardChanged?.Invoke(node);
+            return true;
+        }
+    }
+
+    private bool ValidateLevel()
+    {
+        Queue<Node> path = SearchPath(startNode, endNode);
+        return path != null;
     }
 
     private Node GetNode(int x, int z)
@@ -123,13 +149,25 @@ public class GameBoard : MonoBehaviour
             Handles.Label(node.Position, $"x:{node.X},z:{node.Z}", new GUIStyle() { fontSize = 24 });
             Node node1 = GetNode(start.X, start.Z);
             Node node2 = GetNode(end.X, end.Z);
-            List<Node> path = SearchPath(node1, node2);
-            for (int i = 1; i < path.Count; i++)
-            {
-                Node currentNode = path[i];
-                Node previousNode = path[i - 1];
-                Gizmos.DrawLine(currentNode.Position, previousNode.Position);
-            }
+            //Queue<Node> path = SearchPath(node1, node2);
+            //for (int i = 1; i < path.Count; i++)
+            //{
+            //    Node currentNode = path[i];
+            //    Node previousNode = path[i - 1];
+            //    Gizmos.DrawLine(currentNode.Position, previousNode.Position);
+            //}
         }
+    }
+
+    [ContextMenu("delete node (4,-1)")]
+    public void RemoveNode()
+    {
+        RemoveNode(GetNode(4, -1));
+    }
+
+    [ContextMenu("delete node (3,-2)")]
+    public void RemoveNode2()
+    {
+        RemoveNode(GetNode(3, -2));
     }
 }
