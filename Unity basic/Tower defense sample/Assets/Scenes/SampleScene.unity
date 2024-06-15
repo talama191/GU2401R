@@ -151,8 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5b8a81263cf804390d7a8a99964b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3122277910251521649, guid: 00fe909460b7045458ca3ba00c5c9e1e, type: 3}
-  spawnCooldown: 1
+  levelData: {fileID: 11400000, guid: 5e2b3e50386f0fa4283a5ffa57654c99, type: 2}
 --- !u!4 &444594005
 Transform:
   m_ObjectHideFlags: 0

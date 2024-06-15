@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 public class BasicEnemy : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed;
+    private float currentHp;
+    private float movementSpeed;
 
+    private EnemyData enemyData;
     private Queue<Node> currentPath;
     private Node prevNode;
     private bool hasSetup = false;
@@ -19,8 +21,11 @@ public class BasicEnemy : MonoBehaviour
         GameBoard.Instance.OnGameBoardChanged -= OnGameBoardChange;
     }
 
-    public void Setup()
+    public void Setup(EnemyData enemyData)
     {
+        this.enemyData = enemyData;
+        movementSpeed = enemyData.MovementSpeed;
+        currentHp = enemyData.MaxHp;
         currentPath = GameBoard.Instance.SearchFromStartToEnd();
         hasSetup = true;
     }
