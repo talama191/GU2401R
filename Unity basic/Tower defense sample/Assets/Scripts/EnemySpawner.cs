@@ -42,13 +42,13 @@ public class EnemySpawner : MonoBehaviour
             MiniWaveData currentMiniWave = currentWave.MiniWaves[miniWaveIndex];
 
             ProcessAndSpawnEnemy(currentMiniWave);
-            if (miniWaveTimer >= currentMiniWave.Duration)
-            {
-                MoveNextMiniWave();
-            }
             if (waveTimer >= currentWave.Duration)
             {
                 MoveNextWave();
+            }
+            if (miniWaveTimer >= currentMiniWave.Duration)
+            {
+                MoveNextMiniWave();
             }
         }
     }
@@ -63,6 +63,9 @@ public class EnemySpawner : MonoBehaviour
             var currentEnemyData = miniWave.EnemySpawnDatas[enemyDataIndex];
 
             SpawnEnemy(currentEnemyData.EnemyData);
+            Debug.Log($"Spawn enemy {currentEnemyData.EnemyData.EnemyPrefab} at wave {waveIndex} mini wave {miniWaveIndex} at count{miniWaveSpawnCount} and at index {enemyDataIndex}" +
+                $" wave {waveTimer} mini wave {miniWaveTimer}");
+
             enemyDataIndex++;
             if (enemyDataIndex >= miniWave.EnemySpawnDatas.Length)
             {
