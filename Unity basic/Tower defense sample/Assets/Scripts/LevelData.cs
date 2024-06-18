@@ -16,13 +16,3 @@ public class LevelData : ScriptableObject
     public NodeData End => end;
     public WaveData[] Waves => waves;
 }
-
-[System.Serializable]
-public class NodeData
-{
-    [SerializeField] private int x;
-    [SerializeField] private int z;
-
-    public int X => x;
-    public int Z => z;
-}

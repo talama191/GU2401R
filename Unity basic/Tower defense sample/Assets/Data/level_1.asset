@@ -15,38 +15,54 @@ MonoBehaviour:
   nodes:
   - x: 1
     z: -1
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 2
     z: -1
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 3
     z: -1
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 4
     z: -1
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 1
     z: -2
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 3
     z: -2
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 4
     z: -2
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 1
     z: -3
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 2
     z: -3
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 3
     z: -3
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 4
     z: -3
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 0
     z: -2
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 5
     z: -2
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   - x: 6
     z: -2
+    prefab: {fileID: 6138715982215736599, guid: 340c6da088535d1408163035fe1437dd, type: 3}
   start:
     x: 0
     z: -2
+    prefab: {fileID: 0}
   end:
     x: 6
     z: -2
+    prefab: {fileID: 0}
   waves:
   - {fileID: 11400000, guid: 0a0e2f92c2be7ec4fa7917ccc920ccf6, type: 2}
   - {fileID: 11400000, guid: 6eb06f330732d5d4794f3b5bf0688bcb, type: 2}

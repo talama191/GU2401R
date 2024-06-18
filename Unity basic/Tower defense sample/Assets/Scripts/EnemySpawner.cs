@@ -78,7 +78,6 @@ public class EnemySpawner : MonoBehaviour
     private void MoveNextMiniWave()
     {
         WaveData currentWave = levelData.Waves[waveIndex];
-        //MiniWaveData currentMiniWave = currentWave.MiniWaves[waveIndex];
         miniWaveIndex++;
         ResetMiniWave();
         if (miniWaveIndex >= currentWave.MiniWaves.Length) MoveNextWave();

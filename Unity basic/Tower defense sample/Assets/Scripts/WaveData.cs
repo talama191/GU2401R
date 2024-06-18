@@ -8,6 +8,14 @@ public class WaveData : ScriptableObject
 
     public MiniWaveData[] MiniWaves => miniWaves;
     public float Duration => duration;
+
+#if UNITY_EDITOR
+    [ContextMenu("Validate data")]
+    private void ValidateData()
+    {
+
+    }
+#endif
 }
 
 [System.Serializable]
