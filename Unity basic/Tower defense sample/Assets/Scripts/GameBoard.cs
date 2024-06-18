@@ -115,9 +115,17 @@ public class GameBoard : MonoBehaviour
     public bool RemoveNode(Node node)
     {
         nodes.Remove(node);
+        foreach (Node neighbor in node.NeighborNodes)
+        {
+            CalculateNeighbor(neighbor);
+        }
         if (!ValidateLevel())
         {
             nodes.Add(node);
+            foreach (Node neighbor in node.NeighborNodes)
+            {
+                CalculateNeighbor(neighbor);
+            }
             return false;
         }
         else
@@ -163,7 +171,7 @@ public class GameBoard : MonoBehaviour
     }
 
     [ContextMenu("delete node (4,-1)")]
-    public void RemoveNode()
+    public void RemoveNode1()
     {
         RemoveNode(GetNode(4, -1));
     }
