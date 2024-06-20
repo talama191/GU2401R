@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
-
-public class TowerBullet : MonoBehaviour
+public abstract class TowerProjectile : MonoBehaviour
 {
-    private Rigidbody rb;
-    private float damage;
+    protected Rigidbody rb;
+    protected float damage;
 
     private void Awake()
     {
@@ -22,14 +21,12 @@ public class TowerBullet : MonoBehaviour
     {
         if (other != null)
         {
-            BasicEnemy basicEnemy = other.GetComponent<BasicEnemy>();
-            if (basicEnemy != null)
-            {
-                basicEnemy.TakeDamage(damage);
-                Destroy(gameObject);
-            }
+            OnBulletCollide(other);
+
         }
     }
+
+    protected abstract void OnBulletCollide(Collider other);
 
     IEnumerator SelfDestroy()
     {

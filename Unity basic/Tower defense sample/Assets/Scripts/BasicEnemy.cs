@@ -72,6 +72,7 @@ public class BasicEnemy : MonoBehaviour
         currentHp -= damage;
         if (currentHp <= 0)
         {
+            FXSpawner.Instance.SpawnExplosionEffect(transform.position);
             Destroy(gameObject);
         }
     }

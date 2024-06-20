@@ -15,7 +15,7 @@ MonoBehaviour:
   miniWaves:
   - enemySpawnDatas:
     - enemyData: {fileID: 11400000, guid: 19d16d3bd5ba6ee4e9f4727b6fc2204a, type: 2}
-    spawnCount: 2
+    spawnCount: 6
     duration: 5
-    spawnDelay: 2
+    spawnDelay: 0.6
   duration: 10

@@ -2,7 +2,7 @@
 using UnityEngine;
 public class BasicTower : MonoBehaviour
 {
-    [SerializeField] TowerBullet bulletPrefab;
+    [SerializeField] TowerProjectile bulletPrefab;
     [SerializeField] Transform bulletSpawnRoot;
     [SerializeField] float attackRange;
     [SerializeField] float damage;
@@ -10,6 +10,11 @@ public class BasicTower : MonoBehaviour
     [SerializeField] float projectileSpeed;
 
     private float attackTimer = 0;
+
+    private void Awake()
+    {
+        attackTimer = attackCooldown;
+    }
 
     private void Update()
     {
@@ -29,10 +34,14 @@ public class BasicTower : MonoBehaviour
     public void ShootEnemy(BasicEnemy enemy)
     {
         attackTimer = 0;
-        TowerBullet bullet = Instantiate(bulletPrefab);
+        TowerProjectile bullet = Instantiate(bulletPrefab);
         bullet.transform.position = bulletSpawnRoot.position;
         Vector3 direction = (enemy.transform.position - bullet.transform.position).normalized;
         bullet.ShootBullet(damage, projectileSpeed, direction);
+
+        direction.y = 0;
+        Quaternion lookDirection = Quaternion.LookRotation(direction);
+        transform.rotation = lookDirection;
     }
 
     public BasicEnemy[] ScanEnemy()
