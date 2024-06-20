@@ -82,6 +82,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HoverTank_Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 989fb7eab843640c7ada0607778bcf7e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 989fb7eab843640c7ada0607778bcf7e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

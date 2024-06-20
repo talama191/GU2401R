@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4085531910980858959, guid: ac0535f66ddc1ec489741ebafc92cf2e, type: 3}
   maxHp: 2
-  movementSpeed: 2
+  movementSpeed: 0.5

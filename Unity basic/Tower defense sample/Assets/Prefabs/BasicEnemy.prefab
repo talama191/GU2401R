@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4060835898392765978}
   - component: {fileID: 5369577254290725928}
   - component: {fileID: 3122277910251521649}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BasicEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +106,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 845f9df773be94e26aa80e92ad483534, type: 3}
       propertyPath: m_Name
       value: HoverTank_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 845f9df773be94e26aa80e92ad483534, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 845f9df773be94e26aa80e92ad483534, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 845f9df773be94e26aa80e92ad483534, type: 3}
       propertyPath: m_LocalScale.x

@@ -48,10 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1954502180404407789, guid: b6bd7fbb8a753f64c806fd8e101b9084, type: 3}
   bulletSpawnRoot: {fileID: 4125774656300107514}
-  attackRange: 2
+  attackRange: 3
   damage: 3
   attackCooldown: 1
-  projectileSpeed: 5
+  projectileSpeed: 10
 --- !u!1 &7510918452900902209
 GameObject:
   m_ObjectHideFlags: 0

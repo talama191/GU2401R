@@ -59,6 +59,23 @@ public class BasicEnemy : MonoBehaviour
         return directionVector.magnitude;
     }
 
+    public float GetDistanceToEnd()
+    {
+        Node nextNode = currentPath.Peek();
+        float distance = (nextNode.transform.position - transform.position).magnitude;
+        //vi các ô hiện tại đang cách nhau bằng 1 nên có thể lấy currentPath.count luôn
+        return distance + (currentPath.Count - 1);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHp -= damage;
+        if (currentHp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void OnGameBoardChange(Node node)
     {
         if (!currentPath.Contains(node)) return;

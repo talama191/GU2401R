@@ -20,7 +20,8 @@ public class BasicTower : MonoBehaviour
         {
             if (attackTimer >= attackCooldown)
             {
-                ShootEnemy(scannedEnemies.FirstOrDefault());
+                var enemyNearestToEnd = scannedEnemies.OrderBy(be => be.GetDistanceToEnd()).FirstOrDefault();
+                ShootEnemy(enemyNearestToEnd);
             }
         }
     }
