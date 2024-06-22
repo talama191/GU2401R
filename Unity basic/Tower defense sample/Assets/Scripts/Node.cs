@@ -10,8 +10,8 @@ public class Node : MonoBehaviour
     public List<Node> NeighborNodes { get; private set; }
     public NodeData NodeData => data;
     public Vector3 Position => position;
-    public float X => data.X;
-    public float Z => data.Z;
+    public int X => data.X;
+    public int Z => data.Z;
 
     public void Setup(NodeData node)
     {

@@ -2,18 +2,15 @@
 using UnityEngine;
 public class BasicTower : MonoBehaviour
 {
-    [SerializeField] TowerProjectile bulletPrefab;
     [SerializeField] Transform bulletSpawnRoot;
-    [SerializeField] float attackRange;
-    [SerializeField] float damage;
-    [SerializeField] float attackCooldown;
-    [SerializeField] float projectileSpeed;
 
     private float attackTimer = 0;
+    private TowerData data;
 
-    private void Awake()
+    public void Setup(TowerData data)
     {
-        attackTimer = attackCooldown;
+        this.data = data;
+        attackTimer = data.AttackCooldown;
     }
 
     private void Update()
@@ -23,7 +20,7 @@ public class BasicTower : MonoBehaviour
 
         if (scannedEnemies != null && scannedEnemies.Length > 0)
         {
-            if (attackTimer >= attackCooldown)
+            if (attackTimer >= data.AttackCooldown)
             {
                 var enemyNearestToEnd = scannedEnemies.OrderBy(be => be.GetDistanceToEnd()).FirstOrDefault();
                 ShootEnemy(enemyNearestToEnd);
@@ -34,10 +31,10 @@ public class BasicTower : MonoBehaviour
     public void ShootEnemy(BasicEnemy enemy)
     {
         attackTimer = 0;
-        TowerProjectile bullet = Instantiate(bulletPrefab);
+        TowerProjectile bullet = Instantiate(data.TowerProjectilePrefab);
         bullet.transform.position = bulletSpawnRoot.position;
         Vector3 direction = (enemy.transform.position - bullet.transform.position).normalized;
-        bullet.ShootBullet(damage, projectileSpeed, direction);
+        bullet.ShootBullet(data.Damage, data.ProjectileSpeed, direction);
 
         direction.y = 0;
         Quaternion lookDirection = Quaternion.LookRotation(direction);
@@ -46,7 +43,7 @@ public class BasicTower : MonoBehaviour
 
     public BasicEnemy[] ScanEnemy()
     {
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position, attackRange, Vector3.up);
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, data.AttackRange, Vector3.up);
         if (hits.Length > 0)
         {
             return hits.Select(h => h.transform.GetComponent<BasicEnemy>()).Where(b => b != null).ToArray();

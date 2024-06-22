@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6595916bd1ed34599a4200820b4647, type: 3}
+  m_Name: tower_basic
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 3631244dc04164d079a3302a39dbc0c6, type: 3}
+  towerName: Machine gun
+  towerPrefab: {fileID: 2573442830669393666, guid: 8dbf5a41648d4ce4bb21690558887fb6, type: 3}
+  towerProjectilePrefab: {fileID: 7318766100368645145, guid: b6bd7fbb8a753f64c806fd8e101b9084, type: 3}
+  attackRange: 3
+  damage: 2
+  attackCooldown: 1
+  projectileSpeed: 15

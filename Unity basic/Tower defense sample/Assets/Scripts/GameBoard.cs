@@ -139,13 +139,30 @@ public class GameBoard : MonoBehaviour
         }
     }
 
+    public bool CheckNodeBuildable(Node node)
+    {
+        nodes.Remove(node);
+        foreach (Node neighbor in node.NeighborNodes)
+        {
+            CalculateNeighbor(neighbor);
+        }
+        var validateResult = ValidateLevel();
+        nodes.Add(node);
+        foreach (Node neighbor in node.NeighborNodes)
+        {
+            CalculateNeighbor(neighbor);
+        }
+
+        return validateResult;
+    }
+
     private bool ValidateLevel()
     {
         Queue<Node> path = SearchPath(startNode, endNode);
         return path != null;
     }
 
-    private Node GetNode(int x, int z)
+    public Node GetNode(int x, int z)
     {
         return nodes.FirstOrDefault(n => n.X == x && n.Z == z);
     }
